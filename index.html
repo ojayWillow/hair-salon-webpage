@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Lumière Hair Studio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@200;300;400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav class="navbar">
+    <div class="nav-logo">Lumière</div>
+    <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
+      <span></span><span></span><span></span>
+    </button>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#home">Home</a></li>
+      <li><a href="#services">Services</a></li>
+      <li><a href="#gallery">Gallery</a></li>
+      <li><a href="#book">Book</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero" id="home">
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <p class="hero-sub">Where beauty meets artistry</p>
+      <h1 class="hero-title">Lumière<br /><em>Hair Studio</em></h1>
+      <a href="#book" class="btn btn-outline">Book an Appointment</a>
+    </div>
+    <div class="hero-scroll">&#8595; Scroll</div>
+  </section>
+
+  <!-- INTRO -->
+  <section class="intro">
+    <div class="container intro-grid">
+      <div class="intro-text">
+        <span class="label">Our Philosophy</span>
+        <h2>Hair is your <em>finest</em> accessory</h2>
+        <p>At Lumière, every cut, color, and treatment is a work of art. Our master stylists blend timeless technique with modern innovation to craft a look that is uniquely yours.</p>
+        <a href="#services" class="btn btn-dark">Explore Services</a>
+      </div>
+      <div class="intro-image">
+        <div class="image-frame">
+          <img src="https://images.unsplash.com/photo-1560066984-138dadb4c035?w=600&q=80" alt="Stylist at work" />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICES -->
+  <section class="services" id="services">
+    <div class="container">
+      <span class="label center">What We Offer</span>
+      <h2 class="section-title">Our Services</h2>
+      <div class="services-grid">
+        <div class="service-card">
+          <div class="service-icon">✂️</div>
+          <h3>Precision Cut</h3>
+          <p>Tailored cuts designed for your face shape, lifestyle, and personal style.</p>
+          <span class="price">From €45</span>
+        </div>
+        <div class="service-card">
+          <div class="service-icon">🎨</div>
+          <h3>Color & Balayage</h3>
+          <p>Hand-painted highlights and rich, dimensional color with premium products.</p>
+          <span class="price">From €90</span>
+        </div>
+        <div class="service-card">
+          <div class="service-icon">✨</div>
+          <h3>Treatment & Care</h3>
+          <p>Deep conditioning, keratin, and scalp rituals to restore brilliance.</p>
+          <span class="price">From €55</span>
+        </div>
+        <div class="service-card">
+          <div class="service-icon">💍</div>
+          <h3>Bridal Styling</h3>
+          <p>Bespoke updos and styling for your most unforgettable moments.</p>
+          <span class="price">From €120</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- GALLERY -->
+  <section class="gallery" id="gallery">
+    <div class="container">
+      <span class="label center">Our Work</span>
+      <h2 class="section-title">The Studio Gallery</h2>
+    </div>
+    <div class="gallery-mosaic">
+      <div class="gallery-item tall">
+        <img src="https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=500&q=80" alt="Hair styling" />
+      </div>
+      <div class="gallery-item">
+        <img src="https://images.unsplash.com/photo-1595476108010-b4d1f102b1b1?w=500&q=80" alt="Color treatment" />
+      </div>
+      <div class="gallery-item">
+        <img src="https://images.unsplash.com/photo-1580618672591-eb180b1a973f?w=500&q=80" alt="Blow dry" />
+      </div>
+      <div class="gallery-item tall">
+        <img src="https://images.unsplash.com/photo-1562322140-8baeececf3df?w=500&q=80" alt="Braiding" />
+      </div>
+      <div class="gallery-item">
+        <img src="https://images.unsplash.com/photo-1500840216050-6ffa99d75160?w=500&q=80" alt="Updo" />
+      </div>
+      <div class="gallery-item">
+        <img src="https://images.unsplash.com/photo-1492106087820-71f1a00d2b11?w=500&q=80" alt="Cut and style" />
+      </div>
+    </div>
+  </section>
+
+  <!-- BOOKING / REGISTRATION -->
+  <section class="booking" id="book">
+    <div class="container booking-wrap">
+      <div class="booking-info">
+        <span class="label">Reserve Your Time</span>
+        <h2>Book an Appointment</h2>
+        <p>Register with us to manage your bookings, earn loyalty points, and receive exclusive offers crafted just for you.</p>
+        <ul class="booking-perks">
+          <li>✦ Flexible online scheduling 24/7</li>
+          <li>✦ Personalised style consultation</li>
+          <li>✦ Members-only promotions</li>
+          <li>✦ Reminder & follow-up care tips</li>
+        </ul>
+      </div>
+      <div class="booking-form-wrap">
+        <div class="form-tabs">
+          <button class="tab-btn active" data-tab="register">Register</button>
+          <button class="tab-btn" data-tab="login">Sign In</button>
+        </div>
+
+        <!-- REGISTER -->
+        <form class="booking-form tab-content active" id="register" novalidate>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="fname">First Name</label>
+              <input type="text" id="fname" placeholder="Aria" required />
+            </div>
+            <div class="form-group">
+              <label for="lname">Last Name</label>
+              <input type="text" id="lname" placeholder="Laurent" required />
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="email">Email Address</label>
+            <input type="email" id="email" placeholder="aria@email.com" required />
+          </div>
+          <div class="form-group">
+            <label for="phone">Phone Number</label>
+            <input type="tel" id="phone" placeholder="+371 2000 0000" />
+          </div>
+          <div class="form-group">
+            <label for="service">Preferred Service</label>
+            <select id="service">
+              <option value="">Select a service…</option>
+              <option>Precision Cut</option>
+              <option>Color &amp; Balayage</option>
+              <option>Treatment &amp; Care</option>
+              <option>Bridal Styling</option>
+            </select>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="date">Preferred Date</label>
+              <input type="date" id="date" />
+            </div>
+            <div class="form-group">
+              <label for="time">Preferred Time</label>
+              <select id="time">
+                <option>09:00 AM</option>
+                <option>10:00 AM</option>
+                <option>11:00 AM</option>
+                <option>12:00 PM</option>
+                <option>01:00 PM</option>
+                <option>02:00 PM</option>
+                <option>03:00 PM</option>
+                <option>04:00 PM</option>
+                <option>05:00 PM</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="password">Create Password</label>
+            <input type="password" id="password" placeholder="Min. 8 characters" required />
+          </div>
+          <div class="form-check">
+            <input type="checkbox" id="terms" />
+            <label for="terms">I agree to the <a href="#">Terms &amp; Privacy Policy</a></label>
+          </div>
+          <button type="submit" class="btn btn-dark full">Create Account &amp; Book</button>
+        </form>
+
+        <!-- SIGN IN -->
+        <form class="booking-form tab-content" id="login" novalidate>
+          <div class="form-group">
+            <label for="login-email">Email Address</label>
+            <input type="email" id="login-email" placeholder="aria@email.com" required />
+          </div>
+          <div class="form-group">
+            <label for="login-password">Password</label>
+            <input type="password" id="login-password" placeholder="Your password" required />
+          </div>
+          <div class="form-check space-between">
+            <label><input type="checkbox" /> Remember me</label>
+            <a href="#" class="forgot">Forgot password?</a>
+          </div>
+          <button type="submit" class="btn btn-dark full">Sign In</button>
+          <p class="switch-tab">Don't have an account? <a href="#" data-switch="register">Register here</a></p>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS -->
+  <section class="testimonials">
+    <div class="container">
+      <span class="label center">Client Love</span>
+      <h2 class="section-title">What They Say</h2>
+      <div class="testimonials-grid">
+        <div class="testimonial-card">
+          <p>"My hair has never looked or felt this good. The balayage is absolutely stunning — I get compliments every single day."</p>
+          <div class="testimonial-author">— Sofia M., Rīga</div>
+        </div>
+        <div class="testimonial-card featured">
+          <p>"Lumière is more than a salon — it's an experience. The atmosphere, the skill, the care. Unmatched."</p>
+          <div class="testimonial-author">— Elena K., Jūrmala</div>
+        </div>
+        <div class="testimonial-card">
+          <p>"From consultation to finish, every detail was perfect for my wedding day. I felt like royalty."</p>
+          <div class="testimonial-author">— Marta R., Riga</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="contact" id="contact">
+    <div class="container contact-grid">
+      <div class="contact-info">
+        <span class="label">Find Us</span>
+        <h2>Visit the Studio</h2>
+        <ul class="contact-details">
+          <li><strong>Address</strong><br />12 Brīvības iela, Rīga, LV-1010</li>
+          <li><strong>Hours</strong><br />Mon–Fri: 09:00–20:00<br />Sat: 10:00–18:00<br />Sun: Closed</li>
+          <li><strong>Phone</strong><br /><a href="tel:+37120000000">+371 2000 0000</a></li>
+          <li><strong>Email</strong><br /><a href="mailto:hello@lumierestudio.lv">hello@lumierestudio.lv</a></li>
+        </ul>
+        <div class="social-links">
+          <a href="#" aria-label="Instagram">IG</a>
+          <a href="#" aria-label="Facebook">FB</a>
+          <a href="#" aria-label="TikTok">TK</a>
+        </div>
+      </div>
+      <div class="contact-map">
+        <iframe
+          title="Studio location"
+          src="https://www.openstreetmap.org/export/embed.html?bbox=24.0,56.93,24.2,57.0&layer=mapnik"
+          loading="lazy"
+          allowfullscreen
+        ></iframe>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container footer-inner">
+      <div class="footer-logo">Lumière</div>
+      <p class="footer-tagline">Crafting beauty, one strand at a time.</p>
+      <p class="footer-copy">&copy; 2026 Lumière Hair Studio. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
