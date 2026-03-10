@@ -109,10 +109,7 @@
     <div class="container">
       <span class="label center">Soļas rezervācija</span>
       <h2 class="section-title">Rezervē savu vizīti</h2>
-
       <div class="booking-wizard">
-
-        <!-- STEP INDICATORS -->
         <div class="steps-bar">
           <div class="step active" data-step="1"><span class="step-num">1</span><span class="step-label">Pakalpojums</span></div>
           <div class="step-line"></div>
@@ -122,50 +119,16 @@
           <div class="step-line"></div>
           <div class="step" data-step="4"><span class="step-num">4</span><span class="step-label">Dati</span></div>
         </div>
-
-        <!-- STEP 1: SERVICE -->
         <div class="wizard-panel active" id="step1">
           <h3 class="panel-title">Izvēlies pakalpojumu</h3>
           <div class="service-picker">
-            <label class="service-option">
-              <input type="radio" name="svc" value="Precīzs griezums" data-duration="60" />
-              <div class="svc-card">
-                <span class="svc-icon">✂️</span>
-                <span class="svc-name">Precīzs griezums</span>
-                <span class="svc-meta">60 min &middot; No €45</span>
-              </div>
-            </label>
-            <label class="service-option">
-              <input type="radio" name="svc" value="Krāsošana un balajāža" data-duration="150" />
-              <div class="svc-card">
-                <span class="svc-icon">🎨</span>
-                <span class="svc-name">Krāsošana un balajāža</span>
-                <span class="svc-meta">150 min &middot; No €90</span>
-              </div>
-            </label>
-            <label class="service-option">
-              <input type="radio" name="svc" value="Kopšana un ārstēšana" data-duration="90" />
-              <div class="svc-card">
-                <span class="svc-icon">✨</span>
-                <span class="svc-name">Kopšana un ārstēšana</span>
-                <span class="svc-meta">90 min &middot; No €55</span>
-              </div>
-            </label>
-            <label class="service-option">
-              <input type="radio" name="svc" value="Kāzu stils" data-duration="180" />
-              <div class="svc-card">
-                <span class="svc-icon">💍</span>
-                <span class="svc-name">Kāzu stils</span>
-                <span class="svc-meta">180 min &middot; No €120</span>
-              </div>
-            </label>
+            <label class="service-option"><input type="radio" name="svc" value="Precīzs griezums" data-duration="60" /><div class="svc-card"><span class="svc-icon">✂️</span><span class="svc-name">Precīzs griezums</span><span class="svc-meta">60 min &middot; No €45</span></div></label>
+            <label class="service-option"><input type="radio" name="svc" value="Krāsošana un balajāža" data-duration="150" /><div class="svc-card"><span class="svc-icon">🎨</span><span class="svc-name">Krāsošana un balajāža</span><span class="svc-meta">150 min &middot; No €90</span></div></label>
+            <label class="service-option"><input type="radio" name="svc" value="Kopšana un ārstēšana" data-duration="90" /><div class="svc-card"><span class="svc-icon">✨</span><span class="svc-name">Kopšana un ārstēšana</span><span class="svc-meta">90 min &middot; No €55</span></div></label>
+            <label class="service-option"><input type="radio" name="svc" value="Kāzu stils" data-duration="180" /><div class="svc-card"><span class="svc-icon">💍</span><span class="svc-name">Kāzu stils</span><span class="svc-meta">180 min &middot; No €120</span></div></label>
           </div>
-          <div class="wizard-nav">
-            <button class="btn btn-dark" id="toStep2" disabled>Tālāk &rarr;</button>
-          </div>
+          <div class="wizard-nav"><button class="btn btn-dark" id="toStep2" disabled>Tālāk &rarr;</button></div>
         </div>
-
-        <!-- STEP 2: CALENDAR -->
         <div class="wizard-panel" id="step2">
           <h3 class="panel-title">Izvēlies datumu</h3>
           <div class="cal-wrap">
@@ -174,9 +137,7 @@
               <span class="cal-month" id="calMonthLabel"></span>
               <button class="cal-nav" id="calNext">&#8594;</button>
             </div>
-            <div class="cal-weekdays">
-              <span>P</span><span>O</span><span>T</span><span>C</span><span>Pk</span><span>Se</span><span>Sv</span>
-            </div>
+            <div class="cal-weekdays"><span>P</span><span>O</span><span>T</span><span>C</span><span>Pk</span><span>Se</span><span>Sv</span></div>
             <div class="cal-grid" id="calGrid"></div>
           </div>
           <div class="wizard-nav">
@@ -184,8 +145,6 @@
             <button class="btn btn-dark" id="toStep3" disabled>Tālāk &rarr;</button>
           </div>
         </div>
-
-        <!-- STEP 3: TIME SLOTS -->
         <div class="wizard-panel" id="step3">
           <h3 class="panel-title">Izvēlies laiku</h3>
           <p class="slots-date-label" id="slotsDateLabel"></p>
@@ -199,34 +158,17 @@
             <button class="btn btn-dark" id="toStep4" disabled>Tālāk &rarr;</button>
           </div>
         </div>
-
-        <!-- STEP 4: CONTACT DETAILS -->
         <div class="wizard-panel" id="step4">
           <h3 class="panel-title">Tavi dati</h3>
           <div class="booking-summary" id="bookingSummary"></div>
           <form class="details-form" id="detailsForm" novalidate>
             <div class="form-row">
-              <div class="form-group">
-                <label for="bfname">Vārds</label>
-                <input type="text" id="bfname" placeholder="Anna" required />
-              </div>
-              <div class="form-group">
-                <label for="bflname">Uzvārds</label>
-                <input type="text" id="bflname" placeholder="Bērziņa" required />
-              </div>
+              <div class="form-group"><label for="bfname">Vārds</label><input type="text" id="bfname" placeholder="Anna" required /></div>
+              <div class="form-group"><label for="bflname">Uzvārds</label><input type="text" id="bflname" placeholder="Bērziņa" required /></div>
             </div>
-            <div class="form-group">
-              <label for="bfemail">E-pasta adrese</label>
-              <input type="email" id="bfemail" placeholder="anna@epasts.lv" required />
-            </div>
-            <div class="form-group">
-              <label for="bfphone">Tālruņa numurs</label>
-              <input type="tel" id="bfphone" placeholder="+371 2000 0000" />
-            </div>
-            <div class="form-group">
-              <label for="bfnotes">Papildu vēlējumi (neobligāti)</label>
-              <textarea id="bfnotes" rows="3" placeholder="Piemēram: īpasšas vienošanās, alerģijas utt."></textarea>
-            </div>
+            <div class="form-group"><label for="bfemail">E-pasta adrese</label><input type="email" id="bfemail" placeholder="anna@epasts.lv" required /></div>
+            <div class="form-group"><label for="bfphone">Tālruņa numurs</label><input type="tel" id="bfphone" placeholder="+371 6740 5959" /></div>
+            <div class="form-group"><label for="bfnotes">Papildu vēlējumi (neobligāti)</label><textarea id="bfnotes" rows="3" placeholder="Piemēram: īpašas vien. alerģijas utt."></textarea></div>
             <div class="form-check">
               <input type="checkbox" id="bfterms" required />
               <label for="bfterms">Piekrītu <a href="#">Lietošanas noteikumiem un privātuma politikai</a></label>
@@ -237,8 +179,6 @@
             </div>
           </form>
         </div>
-
-        <!-- SUCCESS -->
         <div class="wizard-panel" id="stepSuccess">
           <div class="success-wrap">
             <div class="success-icon">✓</div>
@@ -248,8 +188,7 @@
             <button class="btn btn-dark" id="resetBooking">Rezervēt vēlreiz</button>
           </div>
         </div>
-
-      </div><!-- /.booking-wizard -->
+      </div>
     </div>
   </section>
 
@@ -259,18 +198,9 @@
       <span class="label center">Klientu atsauksmes</span>
       <h2 class="section-title">Ko viņi saka</h2>
       <div class="testimonials-grid">
-        <div class="testimonial-card">
-          <p>"Mani mati nekad nav izskatījušies un jutušies tik labi. Balajāža ir apbrīnojama — saņemu komplimentus katru dienu."</p>
-          <div class="testimonial-author">— Sofija M., Rīga</div>
-        </div>
-        <div class="testimonial-card featured">
-          <p>"Nosaukums ir vairāk nekā salons — tā ir pieredze. Atmosfēra, prasme, rūpes. Nepārspējami."</p>
-          <div class="testimonial-author">— Elīna K., Jūrmala</div>
-        </div>
-        <div class="testimonial-card">
-          <p>"No konsultācijas līdz beigām — katrs detaļa bija ideāla manai kāzu dienai. Jutājos kā karaliene."</p>
-          <div class="testimonial-author">— Marta R., Rīga</div>
-        </div>
+        <div class="testimonial-card"><p>"Mani mati nekad nav izskatījušies un jutušies tik labi. Balajāža ir apbrīnojama — saņemu komplimentus katru dienu."</p><div class="testimonial-author">— Sofija M., Rīga</div></div>
+        <div class="testimonial-card featured"><p>"Nosaukums ir vairāk nekā salons — tā ir pieredze. Atmosfēra, prasme, rūpes. Nepārspējami."</p><div class="testimonial-author">— Elīna K., Jūrmala</div></div>
+        <div class="testimonial-card"><p>"No konsultācijas līdz beigām — katrs detaļa bija ideāla manai kāzu dienai. Jutājos kā karaliene."</p><div class="testimonial-author">— Marta R., Rīga</div></div>
       </div>
     </div>
   </section>
@@ -282,10 +212,24 @@
         <span class="label">Mūsu atrašanās vieta</span>
         <h2>Apmeklē studiju</h2>
         <ul class="contact-details">
-          <li><strong>Adrese</strong><br />Brīvības iela 12, Rīga, LV-1010</li>
-          <li><strong>Darba laiks</strong><br />P–Pk: 09:00–20:00<br />Se: 10:00–18:00<br />Sv: Slēgts</li>
-          <li><strong>Tālrunis</strong><br /><a href="tel:+37120000000">+371 2000 0000</a></li>
-          <li><strong>E-pasts</strong><br /><a href="mailto:sveiki@nosaukums.lv">sveiki@nosaukums.lv</a></li>
+          <li>
+            <strong>Adrese</strong><br />
+            Ruses iela 5, Zemgales prieškpilsēta,<br />Rīga, LV-1029
+          </li>
+          <li>
+            <strong>Darba laiks</strong><br />
+            P–Pk: 08:00–20:00<br />
+            Se: 08:00–20:00<br />
+            Sv: 08:00–15:00
+          </li>
+          <li>
+            <strong>Tālrunis</strong><br />
+            <a href="tel:+37167405959">67 405 959</a>
+          </li>
+          <li>
+            <strong>E-pasts</strong><br />
+            <a href="mailto:sveiki@nosaukums.lv">sveiki@nosaukums.lv</a>
+          </li>
         </ul>
         <div class="social-links">
           <a href="#" aria-label="Instagram">IG</a>
@@ -294,9 +238,12 @@
         </div>
       </div>
       <div class="contact-map">
-        <iframe title="Studijas atrašanās vieta"
-          src="https://www.openstreetmap.org/export/embed.html?bbox=24.0,56.93,24.2,57.0&layer=mapnik"
-          loading="lazy" allowfullscreen></iframe>
+        <iframe
+          title="Studijas atrašanās vieta"
+          src="https://www.openstreetmap.org/export/embed.html?bbox=24.0480,56.9220,24.0780,56.9380&layer=mapnik&marker=56.9300,24.0630"
+          loading="lazy"
+          allowfullscreen
+        ></iframe>
       </div>
     </div>
   </section>

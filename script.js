@@ -36,26 +36,35 @@ reveals.forEach(el => {
 });
 
 // ===========================
-// BOOKING WIZARD
+// OPENING HOURS & SLOTS
 // ===========================
+// Mon(1)–Sat(6): 08:00–20:00  => slots 08:00–19:00
+// Sun(0):        08:00–15:00  => slots 08:00–14:00
+const SLOTS_WEEKDAY = ['08:00','09:00','10:00','11:00','12:00','13:00','14:00','15:00','16:00','17:00','18:00','19:00'];
+const SLOTS_SUNDAY  = ['08:00','09:00','10:00','11:00','12:00','13:00','14:00'];
 
-// --- State ---
+function getSlotsForDate(dateStr) {
+  const dow = new Date(dateStr).getDay();
+  return dow === 0 ? SLOTS_SUNDAY : SLOTS_WEEKDAY;
+}
+
+// ===========================
+// BOOKING WIZARD STATE
+// ===========================
 let selectedService = null;
 let selectedDate    = null;
 let selectedSlot    = null;
 
-// Simulated booked slots per weekday (0=Mon ... 6=Sun)
-// Format: 'YYYY-MM-DD': ['09:00','11:00', ...]
+// Seed some random booked slots for demo purposes
 const bookedSlots = {};
 function seedBookedSlots() {
   const today = new Date();
-  for (let i = 1; i <= 30; i++) {
+  for (let i = 1; i <= 60; i++) {
     const d = new Date(today);
     d.setDate(today.getDate() + i);
-    if (d.getDay() === 0) continue; // skip Sunday
-    const key = fmtDate(d);
-    const pool = ['09:00','10:00','11:00','12:00','13:00','14:00','15:00','16:00','17:00','18:00','19:00'];
-    const count = Math.floor(Math.random() * 4) + 1;
+    const key   = fmtDate(d);
+    const pool  = getSlotsForDate(key);
+    const count = Math.floor(Math.random() * 4);
     bookedSlots[key] = pool.sort(() => 0.5 - Math.random()).slice(0, count);
   }
 }
@@ -74,14 +83,10 @@ function fmtMonthLv(year, month) {
   return `${months[month]} ${year}`;
 }
 
-// All possible slots
-const ALL_SLOTS = ['09:00','10:00','11:00','12:00','13:00','14:00','15:00','16:00','17:00','18:00','19:00'];
-
-// --- Wizard navigation ---
+// --- Wizard panel navigation ---
 function showPanel(id) {
   document.querySelectorAll('.wizard-panel').forEach(p => p.classList.remove('active'));
   document.getElementById(id).classList.add('active');
-  // Update step indicators
   const stepMap = { step1:1, step2:2, step3:3, step4:4, stepSuccess:4 };
   const current = stepMap[id] || 1;
   document.querySelectorAll('.step').forEach(s => {
@@ -91,7 +96,7 @@ function showPanel(id) {
   });
 }
 
-// --- STEP 1: Service selection ---
+// --- STEP 1: Service ---
 document.querySelectorAll('input[name="svc"]').forEach(radio => {
   radio.addEventListener('change', () => {
     selectedService = radio.value;
@@ -100,57 +105,40 @@ document.querySelectorAll('input[name="svc"]').forEach(radio => {
     radio.closest('.service-option').querySelector('.svc-card').classList.add('selected');
   });
 });
-document.getElementById('toStep2').addEventListener('click', () => {
-  renderCalendar();
-  showPanel('step2');
-});
+document.getElementById('toStep2').addEventListener('click', () => { renderCalendar(); showPanel('step2'); });
 
 // --- STEP 2: Calendar ---
 let calYear, calMonth;
-function initCal() {
-  const now = new Date();
-  calYear  = now.getFullYear();
-  calMonth = now.getMonth();
-}
-initCal();
+(function initCal() { const now = new Date(); calYear = now.getFullYear(); calMonth = now.getMonth(); })();
 
 function renderCalendar() {
-  const label = document.getElementById('calMonthLabel');
-  const grid  = document.getElementById('calGrid');
-  label.textContent = fmtMonthLv(calYear, calMonth);
+  document.getElementById('calMonthLabel').textContent = fmtMonthLv(calYear, calMonth);
+  const grid = document.getElementById('calGrid');
   grid.innerHTML = '';
-
-  const firstDay = new Date(calYear, calMonth, 1).getDay(); // 0=Sun
-  const adjusted = (firstDay === 0) ? 6 : firstDay - 1;    // make Mon=0
+  const firstDay    = new Date(calYear, calMonth, 1).getDay();
+  const adjusted    = (firstDay === 0) ? 6 : firstDay - 1;
   const daysInMonth = new Date(calYear, calMonth + 1, 0).getDate();
   const today = new Date(); today.setHours(0,0,0,0);
 
   for (let i = 0; i < adjusted; i++) {
-    const blank = document.createElement('div');
-    blank.className = 'cal-day blank';
-    grid.appendChild(blank);
+    const blank = document.createElement('div'); blank.className = 'cal-day blank'; grid.appendChild(blank);
   }
-
   for (let d = 1; d <= daysInMonth; d++) {
-    const cell = document.createElement('button');
+    const cell     = document.createElement('button');
     cell.className = 'cal-day';
     cell.textContent = d;
     const thisDate = new Date(calYear, calMonth, d);
     const dateStr  = fmtDate(thisDate);
-    const dow = thisDate.getDay(); // 0=Sun
     const isPast   = thisDate < today;
-    const isSunday = dow === 0;
 
-    if (isPast || isSunday) {
-      cell.classList.add('disabled');
-      cell.disabled = true;
+    if (isPast) {
+      cell.classList.add('disabled'); cell.disabled = true;
     } else {
+      const pool   = getSlotsForDate(dateStr);
       const booked = bookedSlots[dateStr] || [];
-      const avail  = ALL_SLOTS.length - booked.length;
+      const avail  = pool.length - booked.length;
       if (avail === 0) {
-        cell.classList.add('full');
-        cell.disabled = true;
-        cell.title = 'Nav brīvu laiku';
+        cell.classList.add('full'); cell.disabled = true; cell.title = 'Nav brīvu laiku';
       } else {
         cell.classList.add('available');
         if (dateStr === selectedDate) cell.classList.add('selected');
@@ -166,38 +154,28 @@ function renderCalendar() {
   }
 }
 
-document.getElementById('calPrev').addEventListener('click', () => {
-  calMonth--; if (calMonth < 0) { calMonth = 11; calYear--; }
-  renderCalendar();
-});
-document.getElementById('calNext').addEventListener('click', () => {
-  calMonth++; if (calMonth > 11) { calMonth = 0; calYear++; }
-  renderCalendar();
-});
-document.getElementById('toStep3').addEventListener('click', () => {
-  renderSlots();
-  showPanel('step3');
-});
+document.getElementById('calPrev').addEventListener('click', () => { calMonth--; if (calMonth < 0) { calMonth=11; calYear--; } renderCalendar(); });
+document.getElementById('calNext').addEventListener('click', () => { calMonth++; if (calMonth > 11) { calMonth=0; calYear++; } renderCalendar(); });
+document.getElementById('toStep3').addEventListener('click', () => { renderSlots(); showPanel('step3'); });
 document.getElementById('backTo1').addEventListener('click', () => showPanel('step1'));
 
 // --- STEP 3: Time slots ---
 function renderSlots() {
   const grid = document.getElementById('slotsGrid');
-  const label = document.getElementById('slotsDateLabel');
-  label.textContent = fmtDateLv(selectedDate);
+  document.getElementById('slotsDateLabel').textContent = fmtDateLv(selectedDate);
   grid.innerHTML = '';
   selectedSlot = null;
   document.getElementById('toStep4').disabled = true;
 
+  const slots  = getSlotsForDate(selectedDate);
   const booked = bookedSlots[selectedDate] || [];
 
-  ALL_SLOTS.forEach(time => {
+  slots.forEach(time => {
     const btn = document.createElement('button');
     btn.className = 'slot-btn';
     btn.textContent = time;
     if (booked.includes(time)) {
-      btn.classList.add('booked');
-      btn.disabled = true;
+      btn.classList.add('booked'); btn.disabled = true;
       btn.setAttribute('aria-label', `${time} - aizņemts`);
     } else {
       btn.classList.add('free');
@@ -212,13 +190,10 @@ function renderSlots() {
     grid.appendChild(btn);
   });
 }
-document.getElementById('toStep4').addEventListener('click', () => {
-  renderSummary();
-  showPanel('step4');
-});
+document.getElementById('toStep4').addEventListener('click', () => { renderSummary(); showPanel('step4'); });
 document.getElementById('backTo2').addEventListener('click', () => showPanel('step2'));
 
-// --- STEP 4: Summary + form ---
+// --- STEP 4: Details ---
 function renderSummary() {
   document.getElementById('bookingSummary').innerHTML = `
     <div class="summary-row"><span>Pakalpojums</span><strong>${selectedService}</strong></div>
@@ -233,11 +208,7 @@ document.getElementById('detailsForm').addEventListener('submit', e => {
   const name  = document.getElementById('bfname').value.trim();
   const email = document.getElementById('bfemail').value.trim();
   const terms = document.getElementById('bfterms').checked;
-  if (!name || !email || !terms) {
-    alert('Lūdzu aizpildi visus obligātos laukus un piekrīti noteikumiem.');
-    return;
-  }
-  // Mark the slot as booked
+  if (!name || !email || !terms) { alert('Lūdzu aizpildi visus obligātos laukus un piekrīti noteikumiem.'); return; }
   if (!bookedSlots[selectedDate]) bookedSlots[selectedDate] = [];
   bookedSlots[selectedDate].push(selectedSlot);
   document.getElementById('successMsg').textContent =
